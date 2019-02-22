@@ -43,12 +43,17 @@ export default class Content extends Component {
           of the items from cardData. 
         - else, it should only return those cards whose 'tab' matched this.state.selected.
     */
-    return this.state.cards;
+    switch (this.state.selectedTab) {
+      case 'all':
+        return this.state.cards;
+      default:
+        return this.state.cards.filter(card => card.tab === this.state.selectedTab);
+    }
   };
 
   selectTabHandler = event => {
-    console.log('selectTabHandler event.target.value:', event.target.value);
-    changeSelected(event.target.value);
+    console.log('selectTabHandler event.target:', event.target.id);
+    this.changeSelected(event.target.id);
   };
 
   render() {

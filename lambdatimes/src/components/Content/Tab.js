@@ -7,27 +7,28 @@ const Tab = props => {
       if it is not it should just be 'tab'*/
 
   return (
-    <>
+    <React.Fragment>
       {
         (props.tab === props.selectedTab)
-          ? <div className={'tab active-tab'} >
+          ? <div className={'tab active-tab'} id={props.tab}>
               {props.tab.toUpperCase()}
             </div>
           : <div
               className={'tab'}
-              onClick={event => selectTabHandler(event)}
+              id={props.tab}
+              onClick={event => props.selectTabHandler(event)}
             >
               {props.tab.toUpperCase()}
             </div>
       }
-    </>
+    </React.Fragment>
   );
 };
 
 // Make sure you include PropTypes on your props.
 Tab.propTypes = {
   selectedTab: PropTypes.string.isRequired,
-  selectTabHandler: PropTypes.func.isRequired,
+  selectTabHandler: PropTypes.func,
   tab: PropTypes.string
 }
 
